@@ -68,6 +68,10 @@ function addMark(url){
         return false;
     }, false);
 
+    newURL.setAttribute("onclick", 
+    `window.open("${url}")`
+    )
+
     var container = document.createElement("div");
     container.id = id;
     container.appendChild(newURL);
