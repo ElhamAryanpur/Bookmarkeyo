@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    background: #121920;
+    color: #6AAAC9;
+}
+
+#main{
+    border: 5px solid rgb(28, 81, 83);
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    position: fixed;
+    top: 50px;
+}
+
+#url{
+    background: #3b4b5c;
+    border: none;
+    width: 300px;
+    height: 30px;
+
+    color: #6AAAC9;
+    font-weight: bold;
+    font-size: 20px;
+    
+    position: relative;
+    left: 50px;
+    top: 50px;
+}
+
+#save-button{
+    background: #3b4b5c;
+    color: #6AAAC9;
+    border: none;
+    width: 100px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 30px;
+
+    position: relative;
+    top: 80px;
+    left: 150px;
+}
+
+#marks{
+    border: 5px solid rgb(28, 81, 83);
+    width: 600px;
+    padding: 10px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    position: fixed;
+    top: 300px;
+}
+
+.bookmarks{
+    background: #3b4b5c;
+    color: #6AAAC9;
+    border: none;
+    height: 30px;
+    margin-top: 5px;
+}
