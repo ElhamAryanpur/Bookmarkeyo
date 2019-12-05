@@ -80,7 +80,7 @@ function addMark(url){
 
 function save(){
     var input = $("#url").val();
-    input = encodeURIComponent(input);
+    input = input.replace(" ", "");
 
     if (
         input.includes("http://") == true
