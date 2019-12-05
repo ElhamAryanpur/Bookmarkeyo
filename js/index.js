@@ -1,5 +1,25 @@
 const marksDiv = document.getElementById("marks");
-var urlList = [];
+var urlList = localStorage.getItem("marks");
+
+if (urlList == null){
+    urlList = [];
+    alert("Welcome! Write your URLs in" +
+    " textbox below and click save. " +
+    "\n\nLeft-Click to open URLs and Right-Click to Delete URLs!\n" +
+    "\nEnjoy!");
+}
+else {
+    urlList = JSON.parse(urlList);
+    for (var i=0;i<urlList.length;i++){
+        addMark(urlList[i]);
+    }
+}
+
+Array.prototype.remove = function(from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+    this.length = from < 0 ? this.length + from : from;
+    return this.push.apply(this, rest);
+};
 
 function positionDiv(div, WIDTH){
     var size = WIDTH - div.clientWidth / 2;
@@ -20,6 +40,13 @@ window.addEventListener("resize", ()=>{
         marksDiv,
         window.innerWidth / 2);});
 
+function deleteMark(id){
+    document.getElementById(id).outerHTML = "";
+    for (var i=0;i<urlList.length;i++){
+        if (id == urlList[i]){urlList.remove(i)}}
+    localStorage.setItem("marks", JSON.stringify(urlList));
+}
+
 function addMark(url){
 
     var newURL = document.createElement("button");
@@ -32,14 +59,24 @@ function addMark(url){
     }
 
     newURL.innerHTML = url;
+    var id = url.toString();
 
-    marksDiv.appendChild(newURL);
-    marksDiv.appendChild(document.createElement("br"));
+    newURL.addEventListener('contextmenu', (ev)=>{
+        ev.preventDefault();
+        deleteMark(id)
+        return false;
+    }, false);
+
+    var container = document.createElement("div");
+    container.id = id;
+    container.appendChild(newURL);
+    marksDiv.appendChild(container);
 }
 
 function save(){
     var input = $("#url").val();
-    
+    input = encodeURIComponent(input);
+
     if (
         input.includes("http://") == true
         ||
@@ -52,4 +89,6 @@ function save(){
         addMark(input);
         urlList.push(input);
     }
+
+    localStorage.setItem("marks", JSON.stringify(urlList));
 }
