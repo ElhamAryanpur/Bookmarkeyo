@@ -95,5 +95,9 @@ function save(){
         urlList.push(input);
     }
 
+    $("#url").val("");
+
     localStorage.setItem("marks", JSON.stringify(urlList));
 }
+
+document.getElementById("url").focus();
